@@ -1,0 +1,11 @@
+
+Import('env')
+
+env = env.Copy()
+env.Append(LIBS = Split("""
+		omfgutil""")
+	)
+
+parserGen = env.Program(env.getBinName('parsergen'), env.getObjects())
+
+Return('parserGen')

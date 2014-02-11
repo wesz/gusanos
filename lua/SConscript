@@ -1,0 +1,3 @@
+Import('env getObjects getLibName')
+
+env.StaticLibrary(getLibName('glua'), getObjects(env))

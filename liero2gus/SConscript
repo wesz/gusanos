@@ -1,0 +1,8 @@
+
+Import('env')
+
+env = env.Copy()
+
+env.Append(LIBS = env.confLibs('boost_filesystem'))
+	
+env.Program(env.getBinName('liero2gus'), env.getObjects())

@@ -1,0 +1,26 @@
+Import('env')
+
+env = env.Copy()
+env.Append(LIBS = Split("""
+	renderLoaders omfgutil loadpng""")
+	)
+	
+#omfghttp
+
+if env.conf == 'mingw-cross':
+	env.Append(LIBS = Split("alleg"))
+else:
+	env.ParseConfig('allegro-config --libs --cppflags')
+	
+env.Append(
+	LIBS = env.confLibs('boost_filesystem boost_signals png') + ['z']
+	)
+
+	        
+# add more platforms here
+
+SConscript([
+	'./loaders/SConscript'
+	], exports = ['env'])
+
+env.Program(env.getBinName('lighter'), env.getObjects())
